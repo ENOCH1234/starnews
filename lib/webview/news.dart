@@ -1,0 +1,38 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+
+class StarnewsNews extends StatefulWidget {
+  const StarnewsNews({Key? key}) : super(key: key);
+  @override
+  _StarnewsNewsState createState() => _StarnewsNewsState();
+}
+
+class _StarnewsNewsState extends State<StarnewsNews> {
+  final _flutterwebview = FlutterWebviewPlugin();
+  @override
+  Widget build(BuildContext context) {
+    return WebviewScaffold(
+      url: 'https://www.starnews.com.ng/category/news/',
+      appBar: AppBar(
+        backgroundColor: Color(0xff4f0034),
+        title: Text('Starnews - News'),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      withZoom: true,
+      scrollBar: true,
+      withLocalStorage: true,
+      withJavascript: true,
+      initialChild: Center (child: Text('Loading...')),
+      // bottomNavigationBar: Padding(
+      //   padding: EdgeInsets.all(12),
+      //   child: Text('Bottom Navigation'),
+      // ),
+    );
+  }
+  @override
+  void dispose() {
+    _flutterwebview.dispose();
+    super.dispose();
+  }
+}
