@@ -1,6 +1,6 @@
 # starnews
 
-Media and News
+Media and News Mobile Application
 
 ## Getting Started
 
