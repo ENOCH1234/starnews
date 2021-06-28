@@ -37,25 +37,25 @@ List<SliderModel> getSlides(){
   SliderModel sliderModel = new SliderModel(imagePath: "", title: "", desc: "");
 
   // 1
-  sliderModel.setImageAssetPath("assets/images/");
-  sliderModel.setTitle("Search");
-  sliderModel.setDesc("Search Latest International News");
+  sliderModel.setImageAssetPath("assets/onboarding/onboarding.png");
+  sliderModel.setTitle("Latest News");
+  sliderModel.setDesc("Get latest news across the world at your fingertips!");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel(imagePath: "", title: "", desc: "");
 
   // 2
-  sliderModel.setImageAssetPath("assets/images/");
-  sliderModel.setTitle("Get");
-  sliderModel.setDesc("Get Latest News Across the World");
+  sliderModel.setImageAssetPath("assets/onboarding/onboarding.png");
+  sliderModel.setTitle("Sports");
+  sliderModel.setDesc("Don't be left out in sport updates, we serve it hot!");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel(imagePath: "", title: "", desc: "");
 
   // 3
-  sliderModel.setImageAssetPath("assets/images/");
-  sliderModel.setTitle("Use");
-  sliderModel.setDesc("Use the App Anytime you want!");
+  sliderModel.setImageAssetPath("assets/onboarding/onboarding.png");
+  sliderModel.setTitle("Entertainment");
+  sliderModel.setDesc("Enjoy the best of entertainment and internet gossips!");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel(imagePath: "", title: "", desc: "");

@@ -30,6 +30,7 @@ class _HomeState extends State<Home> {
 
   var slides = <SliderModel>[];
   int currentIndex = 0;
+  PageController pageController = new PageController(initialPage: 0);
   
   @override
   void initState() {
@@ -53,7 +54,9 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: PageView.builder(
+          controller: pageController,
           itemCount: slides.length,
           onPageChanged: (val){
             setState(() {
@@ -76,8 +79,13 @@ class _HomeState extends State<Home> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: () {},
-              child:Text("SKIP")
+              onTap: () {
+                pageController.animateToPage(slides.length - 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
+              },
+              child:Text("SKIP", style: TextStyle(
+                fontFamily: "Montserrat Medium",
+                color: Colors.purple,
+              ),)
             ),
             Row(
               children: [
@@ -85,8 +93,14 @@ class _HomeState extends State<Home> {
               ],
             ),
             GestureDetector(
-              onTap: () {},
-              child:Text("NEXT")
+              onTap: () {
+                pageController.animateToPage(currentIndex + 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
+              },
+              child:Text("NEXT", style: TextStyle(
+                fontFamily: "Montserrat Medium",
+                fontWeight: FontWeight.w700,
+                color: Color(0xff4f0034),
+              ),)
             ),
           ],
         ),
@@ -94,11 +108,17 @@ class _HomeState extends State<Home> {
         alignment: Alignment.center,
         width: MediaQuery.of(context).size.width,
         height: Platform.isIOS ? 70 : 60,
-        color: Colors.blue,
-        child: Text("GET STARTED NOW", style: TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600
-    ),),
+        color: Color(0xff4f0034),
+        child: InkWell(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (_) => StarnewsHome()));
+          },
+          child: Text("GET STARTED NOW", style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.w700,
+            fontFamily: "Montserrat Medium",
+          ),),
+        ),
       ),
     );
   }
@@ -112,14 +132,27 @@ class SliderTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Image.asset(imageAssetPath),
           SizedBox(height: 20,),
-          Text(title),
+          Text(title, style: TextStyle(
+            fontSize: 30,
+            fontWeight: FontWeight.w500,
+            fontFamily: "Montserrat Medium",
+            color: Color(0xff4f0034),
+
+          ),),
           SizedBox(height: 12,),
-          Text(desc),
+          Text(desc, textAlign: TextAlign.center, style: TextStyle(
+            fontWeight: FontWeight.w300,
+            fontSize: 16,
+            fontFamily: "Montserrat Regular",
+
+          ),),
 
         ],
       ),

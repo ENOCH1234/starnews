@@ -50,6 +50,8 @@ flutter:
   assets:
     - assets/images/top_header.png
     - assets/images/starnews_logo.png
+    - assets/onboarding/onboarding.png
+    - assets/onboarding/sports.png
 
   fonts:
      - family: Montserrat Regular
