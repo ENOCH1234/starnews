@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'webview/home.dart';
 import 'webview/news.dart';
 import 'webview/entertainment.dart';
@@ -94,9 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.asset(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('Home', style: cardTextStyle,)
                                 ],
                               ),
@@ -115,9 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.network(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('News', style: cardTextStyle,)
                                 ],
                               ),
@@ -136,9 +131,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.network(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('Politics', style: cardTextStyle,)
                                 ],
                               ),
@@ -157,9 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.network(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('Sports', style: cardTextStyle,)
                                 ],
                               ),
@@ -178,9 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.network(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('Entertainment', style: cardTextStyle,)
                                 ],
                               ),
@@ -199,9 +188,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: <Widget>[
-                                  SvgPicture.network(
-                                    'https://image.flaticon.com/icons/svg/1904/1904425.svg',
-                                    height: 112,),
+                                  Image.asset("", height: 112,),
                                   Text('About App', style: cardTextStyle,)
                                 ],
                               ),

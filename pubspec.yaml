@@ -24,7 +24,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_svg: ^0.22.0
   flutter_webview_plugin: ^0.4.0
 
   # The following adds the Cupertino Icons font to your application.
@@ -34,6 +33,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: "^0.8.0"
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/icons/icon.png"
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
