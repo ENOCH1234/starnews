@@ -37,7 +37,7 @@ List<SliderModel> getSlides(){
   SliderModel sliderModel = new SliderModel(imagePath: "", title: "", desc: "");
 
   // 1
-  sliderModel.setImageAssetPath("assets/onboarding/onboarding.png");
+  sliderModel.setImageAssetPath("assets/onboarding/news.png");
   sliderModel.setTitle("Latest News");
   sliderModel.setDesc("Get latest news across the world at your fingertips!");
   slides.add(sliderModel);
