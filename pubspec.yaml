@@ -25,6 +25,7 @@ dependencies:
     sdk: flutter
   flutter_webview_plugin: ^0.4.0
   splashscreen: ^1.2.0
+  introduction_screen: ^2.1.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -55,8 +56,9 @@ flutter:
   assets:
     - assets/images/top_header.png
     - assets/images/starnews_logo.png
-    - assets/onboarding/onboarding.png
+    - assets/onboarding/sports.png
     - assets/onboarding/news.png
+    - assets/onboarding/ent.png
     - assets/onboarding/purple_bg.jpg
     - assets/images/logo.gif
 
