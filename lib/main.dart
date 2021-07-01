@@ -1,14 +1,31 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'webview/home.dart';
 import 'data/data.dart';
+import 'package:splashscreen/splashscreen.dart';
 
 void main() => runApp(myApp());
 
 class myApp extends StatelessWidget {
   const myApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SplashScreen(
+      seconds: 15,
+      backgroundColor: Color(0xff4f0034),
+      image: Image.asset("assets/images/logo.gif"),
+      loaderColor: Colors.white,
+       photoSize: 150.0,
+       navigateAfterSeconds: Onboarding(),
+    );
+  }
+}
+
+
+class Onboarding extends StatelessWidget {
+  const Onboarding({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,73 +70,86 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: PageView.builder(
-          controller: pageController,
-          itemCount: slides.length,
-          onPageChanged: (val){
-            setState(() {
-              currentIndex = val;
-            });
-          },
-          itemBuilder: (context, index){
-            return SliderTile(
-              imageAssetPath: slides[index].getImageAssetPath(),
-              title: slides[index].getTitle(),
-              desc: slides[index].getDesc(),
-            );
-          }
+    return Stack(
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("assets/purple_bg.jpg"),
+              fit: BoxFit.cover,
+            ),
           ),
-
-      bottomSheet: currentIndex != slides.length - 1 ? Container(
-        height: Platform.isIOS ? 70 : 60,
-        padding: EdgeInsets.symmetric(horizontal: 20),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            GestureDetector(
-              onTap: () {
-                pageController.animateToPage(slides.length - 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
-              },
-              child:Text("SKIP", style: TextStyle(
-                fontFamily: "Montserrat Medium",
-                color: Colors.purple,
-              ),)
-            ),
-            Row(
-              children: [
-                for(int i = 0; i < slides.length; i++) currentIndex == i ?pageIndexIndicator(true) : pageIndexIndicator(false)
-              ],
-            ),
-            GestureDetector(
-              onTap: () {
-                pageController.animateToPage(currentIndex + 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
-              },
-              child:Text("NEXT", style: TextStyle(
-                fontFamily: "Montserrat Medium",
-                fontWeight: FontWeight.w700,
-                color: Color(0xff4f0034),
-              ),)
-            ),
-          ],
         ),
-      ): Container(
-        alignment: Alignment.center,
-        width: MediaQuery.of(context).size.width,
-        height: Platform.isIOS ? 70 : 60,
-        color: Color(0xff4f0034),
-        child: InkWell(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (_) => StarnewsHome()));
-          },
-          child: Text("GET STARTED NOW", style: TextStyle(
-            color: Colors.white,
-            fontWeight: FontWeight.w700,
-            fontFamily: "Montserrat Medium",
-          ),),
+
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        body: PageView.builder(
+            controller: pageController,
+            itemCount: slides.length,
+            onPageChanged: (val){
+              setState(() {
+                currentIndex = val;
+              });
+            },
+            itemBuilder: (context, index){
+              return SliderTile(
+                imageAssetPath: slides[index].getImageAssetPath(),
+                title: slides[index].getTitle(),
+                desc: slides[index].getDesc(),
+              );
+            }
+            ),
+
+        bottomSheet: currentIndex != slides.length - 1 ? Container(
+          height: Platform.isIOS ? 70 : 60,
+          padding: EdgeInsets.symmetric(horizontal: 20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () {
+                  pageController.animateToPage(slides.length - 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
+                },
+                child:Text("SKIP", style: TextStyle(
+                  fontFamily: "Montserrat Medium",
+                  color: Colors.purple,
+                ),)
+              ),
+              Row(
+                children: [
+                  for(int i = 0; i < slides.length; i++) currentIndex == i ?pageIndexIndicator(true) : pageIndexIndicator(false)
+                ],
+              ),
+              GestureDetector(
+                onTap: () {
+                  pageController.animateToPage(currentIndex + 1, duration: Duration(milliseconds: 400), curve: Curves.linear);
+                },
+                child:Text("NEXT", style: TextStyle(
+                  fontFamily: "Montserrat Medium",
+                  fontWeight: FontWeight.w700,
+                  color: Color(0xff4f0034),
+                ),)
+              ),
+            ],
+          ),
+        ): Container(
+          alignment: Alignment.center,
+          width: MediaQuery.of(context).size.width,
+          height: Platform.isIOS ? 70 : 60,
+          color: Color(0xff4f0034),
+          child: InkWell(
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_) => StarnewsHome()));
+            },
+            child: Text("GET STARTED NOW", style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w700,
+              fontFamily: "Montserrat Medium",
+            ),),
+          ),
         ),
       ),
+    ]
     );
   }
 }
