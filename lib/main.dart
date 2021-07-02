@@ -1,17 +1,18 @@
 // @dart=2.9
 
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'webview/home.dart';
-import 'data/data.dart';
 import 'package:splashscreen/splashscreen.dart';
-import 'package:introduction_screen/introduction_screen.dart';
+import 'data/data.dart';
 
-void main() => runApp(myApp());
+void main() {
+  runApp(Onboarding());
+}
 
 class myApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
@@ -20,374 +21,187 @@ class myApp extends StatelessWidget {
       image: Image.asset("assets/images/logo.gif"),
       loaderColor: Colors.white,
       photoSize: 150.0,
-      navigateAfterSeconds: App(),
+      navigateAfterSeconds: Onboarding(),
     );
   }
 }
 
-class App extends StatelessWidget {
+class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
-    );
-
     return MaterialApp(
-      title: 'Introduction screen',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: OnBoardingPage(),
+      home: Home(),
     );
   }
 }
 
-class OnBoardingPage extends StatefulWidget {
+class Home extends StatefulWidget {
   @override
-  _OnBoardingPageState createState() => _OnBoardingPageState();
+  _HomeState createState() => _HomeState();
 }
 
-class _OnBoardingPageState extends State<OnBoardingPage> {
-  final introKey = GlobalKey<IntroductionScreenState>();
+class _HomeState extends State<Home> {
+  var slides = <SliderModel>[];
+  int currentIndex = 0;
+  PageController pageController = new PageController(initialPage: 0);
 
-  void _onIntroEnd(context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => StarnewsHome()),
-    );
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    slides = getSlides();
   }
 
-  Widget _buildFullscrenImage() {
-    return Image.asset(
-      'assets/fullscreen.jpg',
-      fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
-      alignment: Alignment.center,
+  Widget pageIndexIndicator(bool isCurrentPage) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 2.0),
+      height: isCurrentPage ? 10.0 : 6.0,
+      width: isCurrentPage ? 10.0 : 6.0,
+      decoration: BoxDecoration(
+        color: isCurrentPage ? Colors.grey : Colors.grey[300],
+        borderRadius: BorderRadius.circular(12),
+      ),
     );
-  }
-
-  Widget _buildImage(String assetName, [double width = 350]) {
-    return Image.asset('assets/$assetName', width: width);
   }
 
   @override
   Widget build(BuildContext context) {
-    const bodyStyle = TextStyle(fontSize: 19.0);
-
-    const pageDecoration = const PageDecoration(
-      titleTextStyle: TextStyle(fontSize: 28.0, fontWeight: FontWeight.w700),
-      bodyTextStyle: bodyStyle,
-      descriptionPadding: EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 16.0),
-      pageColor: Colors.white,
-      imagePadding: EdgeInsets.zero,
-    );
-
-    return IntroductionScreen(
-      key: introKey,
-      globalBackgroundColor: Colors.white,
-      globalHeader: Align(
-        alignment: Alignment.topRight,
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 16, right: 16),
-            child: _buildImage('flutter.png', 100),
+    return Stack(children: [
+      Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/onboarding/purple_bg.jpg"),
+            fit: BoxFit.cover,
           ),
         ),
       ),
-      globalFooter: SizedBox(
-        width: double.infinity,
-        height: 60,
-        child: ElevatedButton(
-          child: const Text(
-            'Let\s go right away!',
-            style: TextStyle(fontSize: 16.0, fontWeight: FontWeight.bold),
-          ),
-          onPressed: () => _onIntroEnd(context),
-        ),
-      ),
-      pages: [
-        PageViewModel(
-          title: "Fractional shares",
-          body:
-          "Instead of having to buy an entire share, invest any amount you want.",
-          image: _buildImage('img1.jpg'),
-          decoration: pageDecoration,
-        ),
-        PageViewModel(
-          title: "Learn as you go",
-          body:
-          "Download the Stockpile app and master the market with our mini-lesson.",
-          image: _buildImage('img2.jpg'),
-          decoration: pageDecoration,
-        ),
-        PageViewModel(
-          title: "Kids and teens",
-          body:
-          "Kids and teens can track their stocks 24/7 and place trades that you approve.",
-          image: _buildImage('img3.jpg'),
-          decoration: pageDecoration,
-        ),
-        PageViewModel(
-          title: "Full Screen Page",
-          body:
-          "Pages can be full screen as well.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc id euismod lectus, non tempor felis. Nam rutrum rhoncus est ac venenatis.",
-          image: _buildFullscrenImage(),
-          decoration: pageDecoration.copyWith(
-            contentMargin: const EdgeInsets.symmetric(horizontal: 16),
-            fullScreen: true,
-            bodyFlex: 2,
-            imageFlex: 3,
-          ),
-        ),
-        PageViewModel(
-          title: "Another title page",
-          body: "Another beautiful body text for this example onboarding",
-          image: _buildImage('img2.jpg'),
-          footer: ElevatedButton(
-            onPressed: () {
-              introKey.currentState?.animateScroll(0);
+      Scaffold(
+        backgroundColor: Colors.transparent,
+        body: PageView.builder(
+            controller: pageController,
+            itemCount: slides.length,
+            onPageChanged: (val) {
+              setState(() {
+                currentIndex = val;
+              });
             },
-            child: const Text(
-              'FooButton',
-              style: TextStyle(color: Colors.white),
-            ),
-            style: ElevatedButton.styleFrom(
-              primary: Colors.lightBlue,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8.0),
+            itemBuilder: (context, index) {
+              return SliderTile(
+                imageAssetPath: slides[index].getImageAssetPath(),
+                title: slides[index].getTitle(),
+                desc: slides[index].getDesc(),
+              );
+            }),
+        bottomSheet: currentIndex != slides.length - 1
+            ? Container(
+                height: Platform.isIOS ? 70 : 60,
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
+                        onTap: () {
+                          pageController.animateToPage(slides.length - 1,
+                              duration: Duration(milliseconds: 400),
+                              curve: Curves.linear);
+                        },
+                        child: Text(
+                          "SKIP",
+                          style: TextStyle(
+                            fontFamily: "Montserrat Medium",
+                            color: Colors.purple,
+                          ),
+                        )),
+                    Row(
+                      children: [
+                        for (int i = 0; i < slides.length; i++)
+                          currentIndex == i
+                              ? pageIndexIndicator(true)
+                              : pageIndexIndicator(false)
+                      ],
+                    ),
+                    GestureDetector(
+                        onTap: () {
+                          pageController.animateToPage(currentIndex + 1,
+                              duration: Duration(milliseconds: 400),
+                              curve: Curves.linear);
+                        },
+                        child: Text(
+                          "NEXT",
+                          style: TextStyle(
+                            fontFamily: "Montserrat Medium",
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xff4f0034),
+                          ),
+                        )),
+                  ],
+                ),
+              )
+            : Container(
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                height: Platform.isIOS ? 70 : 60,
+                color: Color(0xff4f0034),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (_) => StarnewsHome()));
+                  },
+                  child: Text(
+                    "GET STARTED NOW",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700,
+                      fontFamily: "Montserrat Medium",
+                    ),
+                  ),
+                ),
               ),
+      ),
+    ]);
+  }
+}
+
+class SliderTile extends StatelessWidget {
+  String imageAssetPath, title, desc;
+  SliderTile({this.imageAssetPath, this.title, this.desc});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 30),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(imageAssetPath),
+          SizedBox(
+            height: 20,
+          ),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 30,
+              fontWeight: FontWeight.w500,
+              fontFamily: "Montserrat Medium",
+              color: Color(0xff4f0034),
             ),
           ),
-          decoration: pageDecoration,
-        ),
-        PageViewModel(
-          title: "Title of last page - reversed",
-          bodyWidget: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text("Click on ", style: bodyStyle),
-              Icon(Icons.edit),
-              Text(" to edit a post", style: bodyStyle),
-            ],
+          SizedBox(
+            height: 12,
           ),
-          decoration: pageDecoration.copyWith(
-            bodyFlex: 2,
-            imageFlex: 4,
-            bodyAlignment: Alignment.bottomCenter,
-            imageAlignment: Alignment.topCenter,
+          Text(
+            desc,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontWeight: FontWeight.w300,
+              fontSize: 16,
+              fontFamily: "Montserrat Regular",
+            ),
           ),
-          image: _buildImage('img1.jpg'),
-          reverse: true,
-        ),
-      ],
-      onDone: () => _onIntroEnd(context),
-      //onSkip: () => _onIntroEnd(context), // You can override onSkip callback
-      showSkipButton: true,
-      skipFlex: 0,
-      nextFlex: 0,
-      //rtl: true, // Display as right-to-left
-      skip: const Text('Skip'),
-      next: const Icon(Icons.arrow_forward),
-      done: const Text('Done', style: TextStyle(fontWeight: FontWeight.w600)),
-      curve: Curves.fastLinearToSlowEaseIn,
-      controlsMargin: const EdgeInsets.all(16),
-      controlsPadding: kIsWeb
-          ? const EdgeInsets.all(12.0)
-          : const EdgeInsets.fromLTRB(8.0, 4.0, 8.0, 4.0),
-      dotsDecorator: const DotsDecorator(
-        size: Size(10.0, 10.0),
-        color: Color(0xFFBDBDBD),
-        activeSize: Size(22.0, 10.0),
-        activeShape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(25.0)),
-        ),
-      ),
-      dotsContainerDecorator: const ShapeDecoration(
-        color: Colors.black87,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.0)),
-        ),
+        ],
       ),
     );
   }
 }
-
-
-// class Onboarding extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home: Home(),
-//     );
-//   }
-// }
-
-// class Home extends StatefulWidget {
-//   @override
-//   _HomeState createState() => _HomeState();
-// }
-//
-// class _HomeState extends State<Home> {
-//   var slides = <SliderModel>[];
-//   int currentIndex = 0;
-//   PageController pageController = new PageController(initialPage: 0);
-//
-//   @override
-//   void initState() {
-//     // TODO: implement initState
-//     super.initState();
-//     slides = getSlides();
-//   }
-//
-//   Widget pageIndexIndicator(bool isCurrentPage) {
-//     return Container(
-//       margin: EdgeInsets.symmetric(horizontal: 2.0),
-//       height: isCurrentPage ? 10.0 : 6.0,
-//       width: isCurrentPage ? 10.0 : 6.0,
-//       decoration: BoxDecoration(
-//         color: isCurrentPage ? Colors.grey : Colors.grey[300],
-//         borderRadius: BorderRadius.circular(12),
-//       ),
-//     );
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Stack(children: [
-//       Container(
-//         decoration: BoxDecoration(
-//           image: DecorationImage(
-//             image: AssetImage("assets/purple_bg.jpg"),
-//             fit: BoxFit.cover,
-//           ),
-//         ),
-//       ),
-//       Scaffold(
-//         backgroundColor: Colors.transparent,
-//         body: PageView.builder(
-//             controller: pageController,
-//             itemCount: slides.length,
-//             onPageChanged: (val) {
-//               setState(() {
-//                 currentIndex = val;
-//               });
-//             },
-//             itemBuilder: (context, index) {
-//               return SliderTile(
-//                 imageAssetPath: slides[index].getImageAssetPath(),
-//                 title: slides[index].getTitle(),
-//                 desc: slides[index].getDesc(),
-//               );
-//             }),
-//         bottomSheet: currentIndex != slides.length - 1
-//             ? Container(
-//                 height: Platform.isIOS ? 70 : 60,
-//                 padding: EdgeInsets.symmetric(horizontal: 20),
-//                 child: Row(
-//                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                   children: [
-//                     GestureDetector(
-//                         onTap: () {
-//                           pageController.animateToPage(slides.length - 1,
-//                               duration: Duration(milliseconds: 400),
-//                               curve: Curves.linear);
-//                         },
-//                         child: Text(
-//                           "SKIP",
-//                           style: TextStyle(
-//                             fontFamily: "Montserrat Medium",
-//                             color: Colors.purple,
-//                           ),
-//                         )),
-//                     Row(
-//                       children: [
-//                         for (int i = 0; i < slides.length; i++)
-//                           currentIndex == i
-//                               ? pageIndexIndicator(true)
-//                               : pageIndexIndicator(false)
-//                       ],
-//                     ),
-//                     GestureDetector(
-//                         onTap: () {
-//                           pageController.animateToPage(currentIndex + 1,
-//                               duration: Duration(milliseconds: 400),
-//                               curve: Curves.linear);
-//                         },
-//                         child: Text(
-//                           "NEXT",
-//                           style: TextStyle(
-//                             fontFamily: "Montserrat Medium",
-//                             fontWeight: FontWeight.w700,
-//                             color: Color(0xff4f0034),
-//                           ),
-//                         )),
-//                   ],
-//                 ),
-//               )
-//             : Container(
-//                 alignment: Alignment.center,
-//                 width: MediaQuery.of(context).size.width,
-//                 height: Platform.isIOS ? 70 : 60,
-//                 color: Color(0xff4f0034),
-//                 child: InkWell(
-//                   onTap: () {
-//                     Navigator.push(context,
-//                         MaterialPageRoute(builder: (_) => StarnewsHome()));
-//                   },
-//                   child: Text(
-//                     "GET STARTED NOW",
-//                     style: TextStyle(
-//                       color: Colors.white,
-//                       fontWeight: FontWeight.w700,
-//                       fontFamily: "Montserrat Medium",
-//                     ),
-//                   ),
-//                 ),
-//               ),
-//       ),
-//     ]);
-//   }
-// }
-//
-// class SliderTile extends StatelessWidget {
-//   String imageAssetPath, title, desc;
-//   SliderTile({this.imageAssetPath, this.title, this.desc});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       padding: EdgeInsets.symmetric(horizontal: 20),
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           Image.asset(imageAssetPath),
-//           SizedBox(
-//             height: 20,
-//           ),
-//           Text(
-//             title,
-//             style: TextStyle(
-//               fontSize: 30,
-//               fontWeight: FontWeight.w500,
-//               fontFamily: "Montserrat Medium",
-//               color: Color(0xff4f0034),
-//             ),
-//           ),
-//           SizedBox(
-//             height: 12,
-//           ),
-//           Text(
-//             desc,
-//             textAlign: TextAlign.center,
-//             style: TextStyle(
-//               fontWeight: FontWeight.w300,
-//               fontSize: 16,
-//               fontFamily: "Montserrat Regular",
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }

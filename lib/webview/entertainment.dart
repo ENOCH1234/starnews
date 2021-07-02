@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class StarnewsEnt extends StatefulWidget {
@@ -15,6 +16,9 @@ class _StarnewsEntState extends State<StarnewsEnt> {
       url: 'https://www.starnews.com.ng/category/entertainment/',
       appBar: AppBar(
         backgroundColor: Color(0xff4f0034),
+        brightness: Brightness.light, // status bar brightness
+        backwardsCompatibility: false,
+        systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white10),
         title: Text('Starnews - Entertainment'),
         centerTitle: true,
         elevation: 0,

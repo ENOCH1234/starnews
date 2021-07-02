@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
 
 class StarnewsHome extends StatefulWidget {
@@ -15,7 +16,13 @@ class _StarnewsHomeState extends State<StarnewsHome> {
         url: 'https://www.starnews.com.ng/',
         appBar: AppBar(
           backgroundColor: Color(0xff4f0034),
-          title: Text('Starnews - Home'),
+          brightness: Brightness.light, // status bar brightness
+          backwardsCompatibility: false,
+          systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white10),
+          title: Text('Starnews - Home',
+            style: TextStyle(
+              fontFamily: "Montserrat Medium"
+            ),),
           centerTitle: true,
           elevation: 0,
         ),
