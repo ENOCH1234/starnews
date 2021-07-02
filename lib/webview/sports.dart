@@ -19,7 +19,10 @@ class _StarnewsSportsState extends State<StarnewsSports> {
         brightness: Brightness.light, // status bar brightness
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white10),
-        title: Text('Starnews - Sports'),
+        title: Text('Sports',
+          style: TextStyle(
+              fontFamily: "Montserrat Medium"
+          ),),
         centerTitle: true,
         elevation: 0,
       ),

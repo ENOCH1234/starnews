@@ -19,7 +19,10 @@ class _StarnewsNewsState extends State<StarnewsNews> {
         brightness: Brightness.light, // status bar brightness
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.white10),
-        title: Text('Starnews - News'),
+        title: Text('News',
+          style: TextStyle(
+              fontFamily: "Montserrat Medium"
+          ),),
         centerTitle: true,
         elevation: 0,
       ),

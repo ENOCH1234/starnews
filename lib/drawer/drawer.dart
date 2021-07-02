@@ -1,7 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../about.dart';
+import '../webview/entertainment.dart';
+import '../webview/home.dart';
+import '../webview/news.dart';
+import '../webview/politics.dart';
+import '../webview/sports.dart';
+
 
 class MainDrawer extends StatelessWidget {
   const MainDrawer({Key? key}) : super(key: key);
