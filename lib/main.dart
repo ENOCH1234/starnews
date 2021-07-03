@@ -8,7 +8,13 @@ import 'package:splashscreen/splashscreen.dart';
 import 'data/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+int initScreen;
+
+Future <void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  initScreen = await preferences.getInt('initScreen');
+  await preferences.setInt('initScreen', 1);
   runApp(MaterialApp(
       home: myApp(),
       debugShowCheckedModeBanner: false,
@@ -26,51 +32,21 @@ class myApp extends StatelessWidget {
       image: Image.asset("assets/images/logo.gif"),
       loaderColor: Colors.white,
       photoSize: 150.0,
-      navigateAfterSeconds: Splash(),
+      navigateAfterSeconds: Onboarding(),
     );
   }
 }
-
-class Splash extends StatefulWidget {
-  @override
-  SplashState createState() => new SplashState();
-}
-
-class SplashState extends State<Splash> {
-  Future checkFirstSeen() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool _seen = (prefs.getBool('seen') ?? false);
-
-    if (_seen) {
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new Onboarding()));
-    } else {
-      await prefs.setBool('seen', true);
-      Navigator.of(context).pushReplacement(
-          new MaterialPageRoute(builder: (context) => new StarnewsHome()));
-    }
-  }
-
-  @override
-  void afterFirstLayout(BuildContext context) => checkFirstSeen();
-
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new Center(
-        child: new Text('Loading...'),
-      ),
-    );
-  }
-}
-
 
 class Onboarding extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Home(),
+      initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
+      routes: {
+        'onboard' : (context) => Home(),
+        'home' : (context) => StarnewsHome(),
+      },
     );
   }
 }
