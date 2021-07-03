@@ -6,9 +6,14 @@ import 'package:flutter/material.dart';
 import 'webview/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'data/data.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
-  runApp(Onboarding());
+  runApp(MaterialApp(
+      home: myApp(),
+      debugShowCheckedModeBanner: false,
+  )
+  );
 }
 
 class myApp extends StatelessWidget {
@@ -16,15 +21,49 @@ class myApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SplashScreen(
-      seconds: 15,
+      seconds: 10,
       backgroundColor: Color(0xff4f0034),
       image: Image.asset("assets/images/logo.gif"),
       loaderColor: Colors.white,
       photoSize: 150.0,
-      navigateAfterSeconds: Onboarding(),
+      navigateAfterSeconds: Splash(),
     );
   }
 }
+
+class Splash extends StatefulWidget {
+  @override
+  SplashState createState() => new SplashState();
+}
+
+class SplashState extends State<Splash> {
+  Future checkFirstSeen() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool _seen = (prefs.getBool('seen') ?? false);
+
+    if (_seen) {
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new Onboarding()));
+    } else {
+      await prefs.setBool('seen', true);
+      Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(builder: (context) => new StarnewsHome()));
+    }
+  }
+
+  @override
+  void afterFirstLayout(BuildContext context) => checkFirstSeen();
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new Center(
+        child: new Text('Loading...'),
+      ),
+    );
+  }
+}
+
 
 class Onboarding extends StatelessWidget {
   @override
