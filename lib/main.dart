@@ -7,11 +7,13 @@ import 'webview/home.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'data/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:starnews/admob_service.dart';
 
 int initScreen;
 
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  AdMobService.initialize();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = await preferences.getInt('initScreen');
   await preferences.setInt('initScreen', 1);

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:starnews/admob_service.dart';
 import '../drawer/drawer.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class StarnewsHome extends StatefulWidget {
   const StarnewsHome({Key? key}) : super(key: key);
@@ -39,7 +41,16 @@ class _StarnewsHomeState extends State<StarnewsHome> {
           initialChild: Center(child: Text('Loading...')),
         );
       }
-      ),);
+      ),
+      bottomNavigationBar: Container(
+        height: 50,
+        child: AdWidget(
+          key: UniqueKey(),
+          ad: AdMobService.createBannerAd()..load(),
+        ),
+      ),
+      backgroundColor: Colors.grey[200],
+    );
   }
   @override
   void dispose() {
