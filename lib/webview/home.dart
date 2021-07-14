@@ -13,6 +13,12 @@ class StarnewsHome extends StatefulWidget {
 
 class _StarnewsHomeState extends State<StarnewsHome> {
   final _flutterwebview = FlutterWebviewPlugin();
+
+  // void _refreshAction() {
+  //   setState(() {
+  //     _response = http.read(dadJokeApi, headers: httpHeaders);
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +33,12 @@ class _StarnewsHomeState extends State<StarnewsHome> {
           ),),
         centerTitle: true,
         elevation: 0,
+        //Refresh button
+        // actions: [
+        //   IconButton(
+        //       onPressed: () => {},
+        //       icon: Icon(Icons.refresh))
+        // ],
       ),
 
       drawer: MainDrawer(),
@@ -42,6 +54,14 @@ class _StarnewsHomeState extends State<StarnewsHome> {
         );
       }
       ),
+
+      // body: new RefreshIndicator(
+      //     child: new Center(
+      //       child: Text('Welcome!'),
+      //     ),
+      //     onRefresh: () async {},
+      // ),
+
       bottomNavigationBar: Container(
         height: 50,
         child: AdWidget(
@@ -52,9 +72,9 @@ class _StarnewsHomeState extends State<StarnewsHome> {
       backgroundColor: Colors.grey[200],
     );
   }
-  @override
-  void dispose() {
-    _flutterwebview.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _flutterwebview.dispose();
+  //   super.dispose();
+  // }
 }

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AdMobService {
-  static String get bannerAdUnitId => Platform.isAndroid ? 'ca-app-pub-3940256099942544/6300978111'
-      : 'ca-app-pub-3940256099942544/6300978111';
+  static String get bannerAdUnitId => Platform.isAndroid ? 'ca-app-pub-9779350196844111/5620775305'
+      : 'ca-app-pub-9779350196844111/5620775305';
 
   static initialize() {
     if(MobileAds.instance == null) {
