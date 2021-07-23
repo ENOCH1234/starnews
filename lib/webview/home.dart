@@ -43,24 +43,24 @@ class _StarnewsHomeState extends State<StarnewsHome> {
 
       drawer: MainDrawer(),
 
-      body: Builder(builder: (BuildContext context) {
-        return WebviewScaffold(
-          url: 'https://www.starnews.com.ng',
-          withZoom: true,
-          scrollBar: true,
-          withLocalStorage: true,
-          withJavascript: true,
-          initialChild: Center(child: Text('Loading...')),
-        );
-      }
-      ),
-
-      // body: new RefreshIndicator(
-      //     child: new Center(
-      //       child: Text('Welcome!'),
-      //     ),
-      //     onRefresh: () async {},
+      // body: Builder(builder: (BuildContext context) {
+      //   return WebviewScaffold(
+      //     url: 'https://www.starnews.com.ng',
+      //     withZoom: true,
+      //     scrollBar: true,
+      //     withLocalStorage: true,
+      //     withJavascript: true,
+      //     initialChild: Center(child: Text('Loading...')),
+      //   );
+      // }
       // ),
+
+      body: new RefreshIndicator(
+          child: new Center(
+            child: Text('Welcome!'),
+          ),
+          onRefresh: () async {},
+      ),
 
       bottomNavigationBar: Container(
         height: 50,

@@ -42,51 +42,114 @@ class MainDrawer extends StatelessWidget {
                   ),
                   Text("Starnews",
                     style: TextStyle(
-                      fontSize: 22,
+                      fontSize: 26,
                       color: Colors.white,
+                      fontFamily: 'Montserrat Medium',
+                      fontWeight: FontWeight.bold
                     ),
                   ),
 
                   Text("Get Latest News",
                     style: TextStyle(
                       color: Colors.white,
+                      fontFamily: 'Montserrat Regular',
                     ),
                   ),
                 ],
               )
             ),
           ),
+
+          // Home
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text("Profile",
+            leading: Icon(Icons.home, color: Color(0xff4f0034),),
+            title: Text("Home",
               style: TextStyle(
                 fontSize: 18,
+                fontFamily: 'Montserrat Medium',
+                fontWeight: FontWeight.bold
               ),
             ),
             onTap: null,
           ),
 
+          // News
           ListTile(
-            leading: Icon(Icons.settings),
+            leading: Icon(Icons.web, color: Color(0xff4f0034),),
+            title: Text("News",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            onTap: null,
+          ),
+
+          // Politics
+          ListTile(
+            leading: Icon(Icons.people_outline_outlined, color: Color(0xff4f0034),),
+            title: Text("Politics",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            onTap: null,
+          ),
+
+
+          // Sport News
+          ListTile(
+            leading: Icon(Icons.sports, color: Color(0xff4f0034),),
+            title: Text("Sport News",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            onTap: null,
+          ),
+
+          // Entertainment
+          ListTile(
+            leading: Icon(Icons.celebration, color: Color(0xff4f0034),),
+            title: Text("Entertainment",
+              style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            onTap: null,
+          ),
+
+          // Settings
+          ListTile(
+            leading: Icon(Icons.settings, color: Color(0xff4f0034),),
             title: Text("Settings",
               style: TextStyle(
-                fontSize: 18,
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
               ),
             ),
             onTap: null,
           ),
 
+          // Home
           ListTile(
-            leading: Icon(Icons.info_outline),
+            leading: Icon(Icons.info, color: Color(0xff4f0034),),
             title: Text("About App",
               style: TextStyle(
-                fontSize: 18,
+                  fontSize: 18,
+                  fontFamily: 'Montserrat Medium',
+                  fontWeight: FontWeight.bold
               ),
             ),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pushNamed(AboutApp.routeName);
-            },
+            onTap: null,
           ),
         ],
       ),
