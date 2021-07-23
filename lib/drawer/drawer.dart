@@ -67,7 +67,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                 fontSize: 18,
                 fontFamily: 'Montserrat Medium',
-                fontWeight: FontWeight.bold
+                fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -80,7 +80,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -93,7 +93,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -107,7 +107,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -120,7 +120,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -133,7 +133,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
@@ -146,7 +146,7 @@ class MainDrawer extends StatelessWidget {
               style: TextStyle(
                   fontSize: 18,
                   fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.bold
+                  fontWeight: FontWeight.w700
               ),
             ),
             onTap: null,
