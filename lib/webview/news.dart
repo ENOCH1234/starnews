@@ -72,6 +72,16 @@ class _StarnewsNewsState extends State<StarnewsNews> {
         );
       }),
 
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.refresh),
+          backgroundColor: Color(0xff4f0034),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => StarnewsNews()),
+            );
+          }),
+
       bottomNavigationBar: Container(
         height: 50,
         child: AdWidget(

@@ -72,6 +72,16 @@ class _StarnewsSportsState extends State<StarnewsSports> {
         );
       }),
 
+      floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.refresh),
+          backgroundColor: Color(0xff4f0034),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => StarnewsSports()),
+            );
+          }),
+
       bottomNavigationBar: Container(
         height: 50,
         child: AdWidget(
