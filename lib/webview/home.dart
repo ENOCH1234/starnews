@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:async';
-import 'dart:convert';
-// import 'dart:html';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import '../drawer/drawer.dart';
@@ -65,15 +63,15 @@ class _StarnewsHomeState extends State<StarnewsHome> {
             _controller.complete(webViewController);
           },
           onProgress: (int progress) {
-            print("WebView is loading (progress : $progress%)");
+            print("Loading (progress : $progress%)");
           },
           javascriptChannels: <JavascriptChannel>{
             _toasterJavascriptChannel(context),
           },
           navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
+            if (request.url.startsWith('https://www.starnews.com.ng/')) {
               print('blocking navigation to $request}');
-              return NavigationDecision.prevent;
+              // return NavigationDecision.prevent;
             }
             print('allowing navigation to $request');
             return NavigationDecision.navigate;
