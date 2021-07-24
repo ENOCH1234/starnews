@@ -62,25 +62,8 @@ class _StarnewsNewsState extends State<StarnewsNews> {
           onWebViewCreated: (WebViewController webViewController) {
             _controller.complete(webViewController);
           },
-          onProgress: (int progress) {
-            print("Loading (progress : $progress%)");
-          },
           javascriptChannels: <JavascriptChannel>{
             _toasterJavascriptChannel(context),
-          },
-          navigationDelegate: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.starnews.com.ng/category/news/')) {
-              print('blocking navigation to $request}');
-              // return NavigationDecision.prevent;
-            }
-            print('allowing navigation to $request');
-            return NavigationDecision.navigate;
-          },
-          onPageStarted: (String url) {
-            print('Page started loading: $url');
-          },
-          onPageFinished: (String url) {
-            print('Page finished loading: $url');
           },
           gestureNavigationEnabled: true,
         );
