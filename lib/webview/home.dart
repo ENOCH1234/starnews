@@ -15,9 +15,9 @@ class StarnewsHome extends StatefulWidget {
 }
 
 class _StarnewsHomeState extends State<StarnewsHome> {
-
-  final Completer<WebViewController> _controller =
-  Completer<WebViewController>();
+  // bool isLoading=true;
+  // final _key = UniqueKey();
+  final Completer<WebViewController> _controller = Completer<WebViewController>();
 
   @override
   void initState() {
@@ -86,6 +86,23 @@ class _StarnewsHomeState extends State<StarnewsHome> {
           gestureNavigationEnabled: true,
         );
       }),
+
+      // body: Stack(
+      //   children: <Widget>[
+      //     WebView(
+      //       key: _key,
+      //       initialUrl: this.url,
+      //       javascriptMode: JavascriptMode.unrestricted,
+      //       onPageFinished: (finish) {
+      //         setState(() {
+      //           isLoading = false;
+      //         });
+      //       },
+      //     ),
+      //     isLoading ? Center( child: CircularProgressIndicator(),)
+      //         : Stack(),
+      //   ],
+      // ),
 
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.refresh),
