@@ -6,6 +6,7 @@ import 'package:starnews/admob_service.dart';
 import '../drawer/drawer.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+import 'package:starnews/settings.dart';
 
 class StarnewsEnt extends StatefulWidget {
   const StarnewsEnt({Key? key}) : super(key: key);
@@ -37,6 +38,19 @@ class _StarnewsEntState extends State<StarnewsEnt> {
           ),),
         centerTitle: true,
         elevation: 0,
+
+        // Notification Button
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.notifications),
+            tooltip: 'Notification Settings',
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AppSettings())
+              );
+            },
+          ),
+        ],
       ),
 
       drawer: MainDrawer(),

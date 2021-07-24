@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import '../drawer/drawer.dart';
+import 'package:starnews/settings.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -37,6 +38,19 @@ class _StarnewsSportsState extends State<StarnewsSports> {
           ),),
         centerTitle: true,
         elevation: 0,
+
+        // Notification Button
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.notifications),
+            tooltip: 'Notification Settings',
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AppSettings())
+              );
+            },
+          ),
+        ],
       ),
 
       drawer: MainDrawer(),
@@ -75,6 +89,7 @@ class _StarnewsSportsState extends State<StarnewsSports> {
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.refresh),
           backgroundColor: Color(0xff4f0034),
+          tooltip: 'Refresh',
           onPressed: () {
             Navigator.push(
               context,

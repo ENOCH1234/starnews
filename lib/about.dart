@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'webview/home.dart';
 import 'drawer/drawer.dart';
 import 'package:flutter/services.dart';
+import 'package:starnews/admob_service.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 class AboutApp extends StatefulWidget {
   static String routeName = AboutApp() as String;
@@ -26,10 +29,32 @@ class _AboutAppState extends State<AboutApp> {
           ),),
         centerTitle: true,
         elevation: 0,
+
+        // Home Button
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.home),
+            tooltip: 'Home',
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsHome())
+              );
+            },
+          ),
+        ],
       ),
 
     //  Drawer
       drawer: MainDrawer(),
+
+      bottomNavigationBar: Container(
+        height: 50,
+        child: AdWidget(
+          key: UniqueKey(),
+          ad: AdMobService.createBannerAd()..load(),
+        ),
+      ),
+      backgroundColor: Colors.grey[200],
 
     );
   }

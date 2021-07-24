@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'dart:async';
+import '../drawer/drawer.dart';
+import 'package:starnews/settings.dart';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
-import '../drawer/drawer.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -38,12 +39,19 @@ class _StarnewsHomeState extends State<StarnewsHome> {
           ),),
         centerTitle: true,
         elevation: 0,
-        //Refresh button
-        // actions: [
-        //   IconButton(
-        //       onPressed: () => {},
-        //       icon: Icon(Icons.refresh))
-        // ],
+
+        // Notification Button
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.notifications),
+            tooltip: 'Notification Settings',
+            onPressed: () {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AppSettings())
+              );
+            },
+          ),
+        ],
       ),
 
       drawer: MainDrawer(),
