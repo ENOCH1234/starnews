@@ -42,7 +42,7 @@ class _StarnewsEntState extends State<StarnewsEnt> {
         // Notification Button
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.settings),
             tooltip: 'Notification Settings',
             onPressed: () {
               Navigator.push(

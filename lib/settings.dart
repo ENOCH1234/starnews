@@ -47,7 +47,8 @@ class _AppSettingsState extends State<AppSettings> {
 
       body: Container(
         child: Text(
-          'Settings Page Loading...'
+          'Settings Page Loading...',
+          textAlign: TextAlign.center,
         ),
     ),
 

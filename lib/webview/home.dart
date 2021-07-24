@@ -43,7 +43,7 @@ class _StarnewsHomeState extends State<StarnewsHome> {
         // Notification Button
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.settings),
             tooltip: 'Notification Settings',
             onPressed: () {
               Navigator.push(
@@ -55,7 +55,7 @@ class _StarnewsHomeState extends State<StarnewsHome> {
       ),
 
       drawer: MainDrawer(),
-      // key.openEndDrawer(),
+
       body: Builder(builder: (BuildContext context) {
         return WebView(
           initialUrl: 'https://starnews.com.ng',

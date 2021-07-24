@@ -42,7 +42,7 @@ class _StarnewsPoliticsState extends State<StarnewsPolitics> {
         // Notification Button
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: Icon(Icons.settings),
             tooltip: 'Notification Settings',
             onPressed: () {
               Navigator.push(
