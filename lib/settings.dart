@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'drawer/drawer.dart';
 import 'package:flutter/services.dart';
 
-class AboutApp extends StatefulWidget {
-  static String routeName = AboutApp() as String;
-
-  const AboutApp({Key? key}) : super(key: key);
+class AppSettings extends StatefulWidget {
+  const AppSettings({Key? key}) : super(key: key);
 
   @override
-  _AboutAppState createState() => _AboutAppState();
+  _AppSettingsState createState() => _AppSettingsState();
 }
 
-class _AboutAppState extends State<AboutApp> {
+class _AppSettingsState extends State<AppSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,17 +19,14 @@ class _AboutAppState extends State<AboutApp> {
         brightness: Brightness.light, // status bar brightness
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black12),
-        title: Text('About App',
+        title: Text('Settings',
           style: TextStyle(
               fontFamily: "Montserrat Medium"
           ),),
         centerTitle: true,
         elevation: 0,
       ),
-
-    //  Drawer
       drawer: MainDrawer(),
-
     );
   }
 }

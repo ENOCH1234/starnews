@@ -6,6 +6,7 @@ import '../webview/home.dart';
 import '../webview/news.dart';
 import '../webview/politics.dart';
 import '../webview/sports.dart';
+import '../settings.dart';
 
 
 class MainDrawer extends StatelessWidget {
@@ -70,7 +71,12 @@ class MainDrawer extends StatelessWidget {
                 fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsHome())
+              );
+            },
           ),
 
           // News
@@ -83,7 +89,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsNews())
+              );
+            },
           ),
 
           // Politics
@@ -96,7 +107,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsPolitics())
+              );
+            },
           ),
 
 
@@ -110,7 +126,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsSports())
+              );
+            },
           ),
 
           // Entertainment
@@ -123,7 +144,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => StarnewsEnt())
+              );
+            },
           ),
 
           // Settings
@@ -136,7 +162,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AppSettings())
+              );
+            },
           ),
 
           // Home
@@ -149,7 +180,12 @@ class MainDrawer extends StatelessWidget {
                   fontWeight: FontWeight.w700
               ),
             ),
-            onTap: null,
+            onTap: () {
+              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => AboutApp())
+              );
+            },
           ),
         ],
       ),
