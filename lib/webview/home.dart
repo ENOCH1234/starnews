@@ -14,13 +14,6 @@ class StarnewsHome extends StatefulWidget {
 }
 
 class _StarnewsHomeState extends State<StarnewsHome> {
-  // final _flutterwebview = FlutterWebviewPlugin();
-
-  // void _refreshAction() {
-  //   setState(() {
-  //     _response = http.read(dadJokeApi, headers: httpHeaders);
-  //   });
-  // }
 
   final Completer<WebViewController> _controller =
   Completer<WebViewController>();
@@ -86,25 +79,6 @@ class _StarnewsHomeState extends State<StarnewsHome> {
         );
       }),
 
-      // body: Builder(builder: (BuildContext context) {
-      //   return WebviewScaffold(
-      //     url: 'https://www.starnews.com.ng',
-      //     withZoom: true,
-      //     scrollBar: true,
-      //     withLocalStorage: true,
-      //     withJavascript: true,
-      //     initialChild: Center(child: Text('Loading...')),
-      //   );
-      // }
-      // ),
-
-      // body: new RefreshIndicator(
-      //     child: new Center(
-      //       child: Text('Welcome!'),
-      //     ),
-      //     onRefresh: () async {},
-      // ),
-
       bottomNavigationBar: Container(
         height: 50,
         child: AdWidget(
@@ -115,11 +89,6 @@ class _StarnewsHomeState extends State<StarnewsHome> {
       backgroundColor: Colors.grey[200],
     );
   }
-  // @override
-  // void dispose() {
-  //   _flutterwebview.dispose();
-  //   super.dispose();
-  // }
 }
 
 JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
