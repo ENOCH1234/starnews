@@ -31,7 +31,7 @@ class _StarnewsPoliticsState extends State<StarnewsPolitics> {
         brightness: Brightness.light, // status bar brightness
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black12),
-        title: Text('Sports',
+        title: Text('Politics',
           style: TextStyle(
               fontFamily: "Montserrat Medium"
           ),),

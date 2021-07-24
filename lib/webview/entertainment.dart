@@ -31,7 +31,7 @@ class _StarnewsEntState extends State<StarnewsEnt> {
         brightness: Brightness.light, // status bar brightness
         backwardsCompatibility: false,
         systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: Colors.black12),
-        title: Text('Starnews',
+        title: Text('Entertainment',
           style: TextStyle(
               fontFamily: "Montserrat Medium"
           ),),
