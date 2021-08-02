@@ -44,6 +44,10 @@ class Onboarding extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.purple.shade300,
+        dividerColor: Colors.black,
+      ),
       initialRoute: initScreen == 0 || initScreen == null ? 'onboard' : 'home',
       routes: {
         'onboard' : (context) => Home(),
