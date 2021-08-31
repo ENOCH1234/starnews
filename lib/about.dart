@@ -93,21 +93,27 @@ class _AboutAppState extends State<AboutApp> {
         children: [
           Text(
             user.name,
-            style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 24),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+                fontFamily: "Montserrat Medium",
+            ),
           ),
           const SizedBox(height: 4),
           Text(
             user.email,
-            style: TextStyle(fontWeight: FontWeight.bold,
-                fontSize: 24),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+                fontFamily: "Montserrat Regular",
+            ),
           ),
         ],
       );
 
   Widget buildUpgradeButton() =>
       ButtonWidget(
-        text: 'Upgrade to PRO',
+        text: 'Visit Web Portal',
         onClicked: () {},
       );
 
@@ -122,6 +128,7 @@ class _AboutAppState extends State<AboutApp> {
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
+                fontFamily: "Montserrat Medium",
               ),
             ),
             const SizedBox(height: 16),
@@ -131,6 +138,7 @@ class _AboutAppState extends State<AboutApp> {
                 // fontWeight: FontWeight.bold,
                 fontSize: 16,
                 height: 1.4,
+                fontFamily: "Montserrat Regular",
               ),
             ),
           ],

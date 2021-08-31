@@ -31,8 +31,10 @@ class NumbersWidget extends StatelessWidget {
             Text(
               value,
               style: TextStyle(
+                color: Color(0xff4f0034),
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
+                fontFamily: "Montserrat Medium",
               ),
             ),
             SizedBox(height: 2),
@@ -40,6 +42,7 @@ class NumbersWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 fontWeight: FontWeight.bold,
+                fontFamily: "Montserrat Regular",
               ),
             ),
           ],

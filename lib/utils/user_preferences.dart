@@ -8,7 +8,7 @@ class UserPreferences {
     email:
       'info@starnews.com.ng',
     about:
-      'About the app will be here.',
+      'About the app will be here. About the app will be here. About the app will be here. About the app will be here. About the app will be here. About the app will be here. About the app will be here. About the app will be here. About the app will be here',
     isDarkMode: false,
   );
 }

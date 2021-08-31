@@ -15,9 +15,12 @@ class ButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: StadiumBorder(),
         onPrimary: Colors.white,
+        // onSurface: Color(0xff4f0034),
         padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
       ),
       onPressed: () {},
-      child: Text(text),
+      child: Text(text, style: TextStyle(
+        fontFamily: "Montserrat Medium",
+      ),),
   );
 }
