@@ -128,9 +128,7 @@ class _AppSettingsState extends State<AppSettings> {
                   borderRadius: BorderRadius.circular(30),
                 ),
               ),
-              onPressed: () {
-              //  Exit App Function
-              },
+              onPressed: ()=> SystemNavigator.pop(),
               child: Text("Exit App",
                 style: TextStyle(
                   fontFamily: "Montserrat Medium",

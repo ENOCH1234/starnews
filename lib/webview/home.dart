@@ -15,8 +15,8 @@ class StarnewsHome extends StatefulWidget {
 }
 
 class _StarnewsHomeState extends State<StarnewsHome> {
-  // bool isLoading=true;
-  // final _key = UniqueKey();
+  bool isLoading=true;
+  final _key = UniqueKey();
   final Completer<WebViewController> _controller = Completer<WebViewController>();
 
   @override
@@ -56,36 +56,36 @@ class _StarnewsHomeState extends State<StarnewsHome> {
 
       drawer: MainDrawer(),
 
-      body: Builder(builder: (BuildContext context) {
-        return WebView(
-          initialUrl: 'https://starnews.com.ng',
-          javascriptMode: JavascriptMode.unrestricted,
-          onWebViewCreated: (WebViewController webViewController) {
-            _controller.complete(webViewController);
-          },
-          javascriptChannels: <JavascriptChannel>{
-            _toasterJavascriptChannel(context),
-          },
-          gestureNavigationEnabled: true,
-        );
-      }),
+      // body: Builder(builder: (BuildContext context) {
+      //   return WebView(
+      //     initialUrl: 'https://starnews.com.ng',
+      //     javascriptMode: JavascriptMode.unrestricted,
+      //     onWebViewCreated: (WebViewController webViewController) {
+      //       _controller.complete(webViewController);
+      //     },
+      //     javascriptChannels: <JavascriptChannel>{
+      //       _toasterJavascriptChannel(context),
+      //     },
+      //     gestureNavigationEnabled: true,
+      //   );
+      // }),
 
-      // body: Stack(
-      //   children: <Widget>[
-      //     WebView(
-      //       key: _key,
-      //       initialUrl: this.url,
-      //       javascriptMode: JavascriptMode.unrestricted,
-      //       onPageFinished: (finish) {
-      //         setState(() {
-      //           isLoading = false;
-      //         });
-      //       },
-      //     ),
-      //     isLoading ? Center( child: CircularProgressIndicator(),)
-      //         : Stack(),
-      //   ],
-      // ),
+      body: Stack(
+        children: <Widget>[
+          WebView(
+            key: _key,
+            initialUrl: 'https://starnews.com.ng',
+            javascriptMode: JavascriptMode.unrestricted,
+            onPageFinished: (finish) {
+              setState(() {
+                isLoading = false;
+              });
+            },
+          ),
+          isLoading ? Center( child: CircularProgressIndicator(),)
+              : Stack(),
+        ],
+      ),
 
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.refresh),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ButtonWidget extends StatelessWidget {
   const ButtonWidget({
@@ -15,12 +16,23 @@ class ButtonWidget extends StatelessWidget {
       style: ElevatedButton.styleFrom(
         shape: StadiumBorder(),
         onPrimary: Colors.white,
-        // onSurface: Color(0xff4f0034),
-        padding: EdgeInsets.symmetric(horizontal: 32, vertical: 12),
+        primary: Color(0xff4f0034),
+        padding: EdgeInsets.symmetric(horizontal: 35, vertical: 12),
       ),
-      onPressed: () {},
+      onPressed: _launchWebPortal,
       child: Text(text, style: TextStyle(
         fontFamily: "Montserrat Medium",
+        fontWeight: FontWeight.bold,
+        letterSpacing: 2.0,
       ),),
   );
+}
+
+void _launchWebPortal() async {
+  const url = 'https://starnews.com.ng';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }

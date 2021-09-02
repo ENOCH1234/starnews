@@ -9,6 +9,7 @@ import 'drawer/drawer.dart';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AboutApp extends StatefulWidget {
   static String routeName = AboutApp() as String;
@@ -84,7 +85,6 @@ class _AboutAppState extends State<AboutApp> {
         ),
       ),
       backgroundColor: Colors.grey[200],
-
     );
   }
 
@@ -113,19 +113,20 @@ class _AboutAppState extends State<AboutApp> {
 
   Widget buildUpgradeButton() =>
       ButtonWidget(
-        text: 'Visit Web Portal',
-        onClicked: () {},
+        text: '🌐 Visit Web Portal',
+        onClicked: _launchWebPortal,
       );
 
   buildAbout(User user) =>
       Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+        padding: EdgeInsets.symmetric(horizontal: 30),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'About',
               style: TextStyle(
+                color: Color(0xff4f0034),
                 fontWeight: FontWeight.bold,
                 fontSize: 24,
                 fontFamily: "Montserrat Medium",
@@ -140,8 +141,19 @@ class _AboutAppState extends State<AboutApp> {
                 height: 1.4,
                 fontFamily: "Montserrat Regular",
               ),
+              textAlign: TextAlign.justify,
             ),
+            const SizedBox(height: 30),
           ],
         ),
       );
+}
+
+void _launchWebPortal() async {
+  const url = 'https://starnews.com.ng';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
 }
