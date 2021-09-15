@@ -149,7 +149,7 @@ class _AboutAppState extends State<AboutApp> {
       );
 }
 
-void _launchWebPortal() async {
+_launchWebPortal() async {
   const url = 'https://starnews.com.ng';
   if (await canLaunch(url)) {
     await launch(url);

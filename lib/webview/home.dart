@@ -7,6 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:webview_flutter/webview_flutter.dart';
+// import '../api/notification_api.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+
 
 class StarnewsHome extends StatefulWidget {
   const StarnewsHome({Key? key}) : super(key: key);
@@ -15,14 +18,38 @@ class StarnewsHome extends StatefulWidget {
 }
 
 class _StarnewsHomeState extends State<StarnewsHome> {
-  bool isLoading=true;
-  final _key = UniqueKey();
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+  // bool isLoading=true;
+  // final _key = UniqueKey();
   final Completer<WebViewController> _controller = Completer<WebViewController>();
+
 
   @override
   void initState() {
     super.initState();
+    flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
+    var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
+    var iOS = new IOSInitializationSettings();
+    var initSetttings = new InitializationSettings(android: android, iOS: iOS);
+    flutterLocalNotificationsPlugin.initialize(initSetttings,
+        onSelectNotification: onSelectNotification);
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+  }
+
+  Future onSelectNotification(String? payload) async {
+    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
+      return StarnewsHome();
+    }));
+    // debugPrint("payload : $payload");
+    //
+    // showDialog(
+    //     context: context,
+    //     builder: (_) =>  StarnewsHome()// put new link here
+      // new AlertDialog(
+      //   title: new Text('Notification'),
+      //   content: new Text('$payload'),
+      // ),
+    ;
   }
 
   @override
@@ -51,41 +78,46 @@ class _StarnewsHomeState extends State<StarnewsHome> {
               );
             },
           ),
+          IconButton(
+            icon: Icon(Icons.notifications),
+            tooltip: 'Notification',
+            onPressed: () => showNotification()
+          ),
         ],
       ),
 
       drawer: MainDrawer(),
 
-      // body: Builder(builder: (BuildContext context) {
-      //   return WebView(
-      //     initialUrl: 'https://starnews.com.ng',
-      //     javascriptMode: JavascriptMode.unrestricted,
-      //     onWebViewCreated: (WebViewController webViewController) {
-      //       _controller.complete(webViewController);
-      //     },
-      //     javascriptChannels: <JavascriptChannel>{
-      //       _toasterJavascriptChannel(context),
-      //     },
-      //     gestureNavigationEnabled: true,
-      //   );
-      // }),
+      body: Builder(builder: (BuildContext context) {
+        return WebView(
+          initialUrl: 'https://starnews.com.ng',
+          javascriptMode: JavascriptMode.unrestricted,
+          onWebViewCreated: (WebViewController webViewController) {
+            _controller.complete(webViewController);
+          },
+          javascriptChannels: <JavascriptChannel>{
+            _toasterJavascriptChannel(context),
+          },
+          gestureNavigationEnabled: true,
+        );
+      }),
 
-      body: Stack(
-        children: <Widget>[
-          WebView(
-            key: _key,
-            initialUrl: 'https://starnews.com.ng',
-            javascriptMode: JavascriptMode.unrestricted,
-            onPageFinished: (finish) {
-              setState(() {
-                isLoading = false;
-              });
-            },
-          ),
-          isLoading ? Center( child: CircularProgressIndicator(),)
-              : Stack(),
-        ],
-      ),
+      // body: Stack(
+      //   children: <Widget>[
+      //     WebView(
+      //       key: _key,
+      //       initialUrl: 'https://starnews.com.ng',
+      //       javascriptMode: JavascriptMode.unrestricted,
+      //       onPageFinished: (finish) {
+      //         setState(() {
+      //           isLoading = false;
+      //         });
+      //       },
+      //     ),
+      //     isLoading ? Center( child: CircularProgressIndicator(),)
+      //         : Stack(),
+      //   ],
+      // ),
 
       floatingActionButton: FloatingActionButton(
           child: Icon(Icons.refresh),
@@ -107,6 +139,19 @@ class _StarnewsHomeState extends State<StarnewsHome> {
       backgroundColor: Colors.grey[200],
     );
   }
+
+  showNotification() async {
+    var android = new AndroidNotificationDetails(
+        'channel id', 'channel NAME', 'CHANNEL DESCRIPTION',
+        priority: Priority.high,importance: Importance.max
+    );
+    var iOS = new IOSNotificationDetails();
+    var platform = new NotificationDetails(android: android, iOS: iOS);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Read Amazing News', 'Read latest news updates on the Starnews app, specially curated for you!', platform,
+        payload: 'Starnews');
+  }
+
 }
 
 JavascriptChannel _toasterJavascriptChannel(BuildContext context) {
