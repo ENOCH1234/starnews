@@ -171,24 +171,6 @@ class MainDrawer extends StatelessWidget {
             },
           ),
 
-          // Test Notification
-          ListTile(
-            leading: Icon(Icons.notifications, color: Color(0xff4f0034),),
-            title: Text("Test Notification",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.w700
-              ),
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => MyApp())
-              );
-            },
-          ),
-
           // About App
           ListTile(
             leading: Icon(Icons.info, color: Color(0xff4f0034),),

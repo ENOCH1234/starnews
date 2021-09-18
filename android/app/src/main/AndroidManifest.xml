@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="ng.com.starnews.starnews">
    <application
+       android:name="androidx.multidex.MultiDexApplication"
         android:label="Starnews"
         android:icon="@mipmap/ic_launcher">
         <activity

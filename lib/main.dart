@@ -8,11 +8,42 @@ import 'package:splashscreen/splashscreen.dart';
 import 'data/data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:starnews/admob_service.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 int initScreen;
 
+const AndroidNotificationChannel channel = AndroidNotificationChannel(
+    'high_importance_channel', // id
+    'High Importance Notifications', // title
+    'This channel is used for important notifications.', // description
+    importance: Importance.high,
+    playSound: true);
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+FlutterLocalNotificationsPlugin();
+
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('A bg message just showed up : ${message.messageId}');
+}
+
 Future <void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+
+  await flutterLocalNotificationsPlugin
+      .resolvePlatformSpecificImplementation<AndroidFlutterLocalNotificationsPlugin>()
+      ?.createNotificationChannel(channel);
+
+  await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+    alert: true,
+    badge: true,
+    sound: true,
+  );
+
   AdMobService.initialize();
   SharedPreferences preferences = await SharedPreferences.getInstance();
   initScreen = await preferences.getInt('initScreen');
@@ -63,16 +94,40 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   var slides = <SliderModel>[];
   int currentIndex = 0;
   PageController pageController = new PageController(initialPage: 0);
 
   @override
-  void initState() {
+  void initState(){
     // TODO: implement initState
     super.initState();
+    FirebaseMessaging.onMessage.listen((RemoteMessage message){
+      RemoteNotification notification = message.notification;
+      AndroidNotification android = message.notification?.android;
+      if(notification != null && android != null){
+        flutterLocalNotificationsPlugin.show(
+          notification.hashCode,
+          notification.title,
+          notification.body,
+          NotificationDetails(
+            android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                channel.description,
+                color: Color(0xff4f0034),
+                playSound: true,
+                icon: '@mipmap/ic_launcher',
+            )
+          )
+        );
+      }
+    });
+
     slides = getSlides();
   }
+
 
   Widget pageIndexIndicator(bool isCurrentPage) {
     return Container(

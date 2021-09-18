@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "933977291949",
+    "project_id": "starnews-mobile",
+    "storage_bucket": "starnews-mobile.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:933977291949:android:039bd2a4a442d12c875a24",
+        "android_client_info": {
+          "package_name": "ng.com.starnews.starnews"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "933977291949-8627nq200h9n003vo5f2d8e90k7gvgf0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCl6runlLjMV0Aa7SAd2fGi8J7X6I5T_VQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "933977291949-8627nq200h9n003vo5f2d8e90k7gvgf0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

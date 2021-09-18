@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:starnews/api/notification_api.dart';
 import 'dart:io';
 import 'dart:async';
 import '../drawer/drawer.dart';
@@ -7,7 +8,7 @@ import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:webview_flutter/webview_flutter.dart';
-// import '../api/notification_api.dart';
+import '../api/notification_api.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
@@ -24,9 +25,11 @@ class _StarnewsHomeState extends State<StarnewsHome> {
   final Completer<WebViewController> _controller = Completer<WebViewController>();
 
 
+
   @override
   void initState() {
     super.initState();
+
     flutterLocalNotificationsPlugin = new FlutterLocalNotificationsPlugin();
     var android = new AndroidInitializationSettings('@mipmap/ic_launcher');
     var iOS = new IOSInitializationSettings();
@@ -34,7 +37,20 @@ class _StarnewsHomeState extends State<StarnewsHome> {
     flutterLocalNotificationsPlugin.initialize(initSetttings,
         onSelectNotification: onSelectNotification);
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
+
+    NotificationApi.init(initScheduled: true);
+    listenNotifications();
+
+    NotificationApi.showScheduledNotification(
+      title: 'Dinner',
+      body: 'Today',
+      payload: 'dinner_6pm',
+      scheduledDate: DateTime.now().add(Duration (seconds: 20)),
+    );
   }
+
+  void listenNotifications() =>
+    NotificationApi.onNotifications;
 
   Future onSelectNotification(String? payload) async {
     Navigator.of(context).push(MaterialPageRoute(builder: (_) {
