@@ -36,7 +36,7 @@ class NotificationApi {
     if (initScheduled) {
       tz.initializeTimeZones();
       final locationName = await FlutterNativeTimezone.getAvailableTimezones();
-          tz.setLocalLocation(tz.getLocation(locationName));
+          // tz.setLocalLocation(tz.getLocation(locationName));
     }
   }
 

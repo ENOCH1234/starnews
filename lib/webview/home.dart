@@ -94,11 +94,11 @@ class _StarnewsHomeState extends State<StarnewsHome> {
               );
             },
           ),
-          IconButton(
-            icon: Icon(Icons.notifications),
-            tooltip: 'Notification',
-            onPressed: () => showNotification()
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.notifications),
+          //   tooltip: 'Notification',
+          //   onPressed: () => showNotification()
+          // ),
         ],
       ),
 
