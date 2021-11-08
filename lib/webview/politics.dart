@@ -80,7 +80,7 @@ class _StarnewsPoliticsState extends State<StarnewsPolitics> {
           }),
 
       bottomNavigationBar: Container(
-        height: 50,
+        height: 70,
         child: AdWidget(
           key: UniqueKey(),
           ad: AdMobService.createBannerAd()..load(),

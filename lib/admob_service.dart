@@ -16,7 +16,7 @@ class AdMobService {
   static BannerAd createBannerAd() {
     BannerAd ad = new BannerAd(
       adUnitId: bannerAdUnitId,
-      size: AdSize.largeBanner,
+      size: AdSize.banner,
       request: AdRequest(),
       listener: BannerAdListener(
         onAdLoaded: (Ad ad) => print('Ad Loaded'),

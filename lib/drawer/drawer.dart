@@ -154,22 +154,22 @@ class MainDrawer extends StatelessWidget {
           ),
 
           // Settings
-          ListTile(
-            leading: Icon(Icons.settings, color: Color(0xff4f0034),),
-            title: Text("Settings",
-              style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Montserrat Medium',
-                  fontWeight: FontWeight.w700
-              ),
-            ),
-            onTap: () {
-              Navigator.pop(context);
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => AppSettings())
-              );
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.settings, color: Color(0xff4f0034),),
+          //   title: Text("Settings",
+          //     style: TextStyle(
+          //         fontSize: 18,
+          //         fontFamily: 'Montserrat Medium',
+          //         fontWeight: FontWeight.w700
+          //     ),
+          //   ),
+          //   onTap: () {
+          //     Navigator.pop(context);
+          //     Navigator.push(
+          //         context, MaterialPageRoute(builder: (context) => AppSettings())
+          //     );
+          //   },
+          // ),
 
           // About App
           ListTile(

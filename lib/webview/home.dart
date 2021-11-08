@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:async';
 import '../drawer/drawer.dart';
 import 'package:starnews/settings.dart';
+import 'package:starnews/about.dart';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -86,11 +87,11 @@ class _StarnewsHomeState extends State<StarnewsHome> {
         // Notification Button
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.settings),
-            tooltip: 'Notification Settings',
+            icon: Icon(Icons.info_outlined),
+            tooltip: 'About App',
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => AppSettings())
+                  context, MaterialPageRoute(builder: (context) => AboutApp())
               );
             },
           ),
@@ -146,7 +147,7 @@ class _StarnewsHomeState extends State<StarnewsHome> {
           }),
 
       bottomNavigationBar: Container(
-        height: 50,
+        height: 70,
         child: AdWidget(
           key: UniqueKey(),
           ad: AdMobService.createBannerAd()..load(),

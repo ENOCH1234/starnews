@@ -106,7 +106,7 @@ class _StarnewsSportsState extends State<StarnewsSports> {
           }),
 
       bottomNavigationBar: Container(
-        height: 50,
+        height: 70,
         child: AdWidget(
           key: UniqueKey(),
           ad: AdMobService.createBannerAd()..load(),
