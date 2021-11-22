@@ -43,8 +43,8 @@ class _StarnewsHomeState extends State<StarnewsHome> {
     listenNotifications();
 
     NotificationApi.showScheduledNotification(
-      title: 'Dinner',
-      body: 'Today',
+      title: 'Read Latest News',
+      body: 'Check the Starnews App for Amazing News Today!',
       payload: 'dinner_6pm',
       scheduledDate: DateTime.now().add(Duration (seconds: 20)),
     );
