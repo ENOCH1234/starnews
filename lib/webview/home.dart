@@ -3,7 +3,6 @@ import 'package:starnews/api/notification_api.dart';
 import 'dart:io';
 import 'dart:async';
 import '../drawer/drawer.dart';
-import 'package:starnews/settings.dart';
 import 'package:starnews/about.dart';
 import 'package:flutter/services.dart';
 import 'package:starnews/admob_service.dart';
@@ -43,10 +42,10 @@ class _StarnewsHomeState extends State<StarnewsHome> {
     listenNotifications();
 
     NotificationApi.showScheduledNotification(
-      title: 'Read Latest News',
+      title: 'Be Updated!!!',
       body: 'Check the Starnews App for Amazing News Today!',
       payload: 'dinner_6pm',
-      scheduledDate: DateTime.now().add(Duration (seconds: 20)),
+      scheduledDate: DateTime.now().add(Duration (seconds: 200)),
     );
   }
 
@@ -165,7 +164,7 @@ class _StarnewsHomeState extends State<StarnewsHome> {
     var iOS = new IOSNotificationDetails();
     var platform = new NotificationDetails(android: android, iOS: iOS);
     await flutterLocalNotificationsPlugin.show(
-        0, 'Read Amazing News', 'Read latest news updates on the Starnews app, specially curated for you!', platform,
+        0, 'Read Amazing News!', 'Read latest news updates on the Starnews app, specially curated for you!', platform,
         payload: 'Starnews');
   }
 

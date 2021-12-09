@@ -2,4 +2,5 @@
 
 <resources>
     <color name="background_color">#4f0034</color>
+    <color name="colorPrimary">#4f0034</color>
 </resources>
